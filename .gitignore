@@ -396,3 +396,12 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+.idea/
+
+#Environment config files should be exlucded ig
+.env
+.env.local
+.env.*.local
+
+
+*.tsbuildinfo
