@@ -5,7 +5,7 @@ import { Form } from 'vee-validate';
 import Input from './Input.vue';
 import { createComment } from '@/validation/validationSchemas';
 import { useCollectionsUpdater } from '@/composables/postData';
-import userLogo from '@/assets/icons/userLogo.png';
+// import userLogo from '@/assets/icons/userLogo.png';
 
 const router = useRouter();
 const { postModalData } = useCollectionsUpdater('/comments');
