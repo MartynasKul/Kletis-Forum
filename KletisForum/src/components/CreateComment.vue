@@ -40,11 +40,11 @@ function doForward() {
   <div class="w-full flex p-2 mb-5">
     <!-- User Icon -->
     <div class="iconer mr-2 ml-0">
-      <img
+      <!-- <img
         class="w-12 h-12 rounded-full bg-cweam"
         :src="userLogo"
         alt="User Icon"
-      />
+      /> -->
     </div>
 
     <!-- Comment Form -->
