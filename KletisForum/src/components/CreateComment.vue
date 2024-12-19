@@ -5,7 +5,7 @@ import { Form } from 'vee-validate';
 import Input from './Input.vue';
 import { createComment } from '@/validation/validationSchemas';
 import { useCollectionsUpdater } from '@/composables/postData';
-
+import userLogo from '@/assets/icons/userLogo.png';
 
 const router = useRouter();
 const { postModalData } = useCollectionsUpdater('/comments');
@@ -42,7 +42,7 @@ function doForward() {
     <div class="iconer mr-2 ml-0">
       <img
         class="w-12 h-12 rounded-full bg-cweam"
-        src="../assets/icons/userLogo.png"
+        :src="userLogo"
         alt="User Icon"
       />
     </div>
