@@ -94,7 +94,7 @@ The application is deployed on **Vercel** for seamless access.
 1. Clone the repository:
    ```bash
    git clone https://github.com/MartynasKul/Kletis-Forum.git
-   cd kletis-forum-frontend
+   cd kletis-forum
    ```
 2. Install dependencies:
    ```bash
