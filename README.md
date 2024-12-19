@@ -1,106 +1,122 @@
-# Klėtis Forum
+# Klėtis Forum Frontend
 
-## Overview
-
-**Klėtis** is a RESTful API built with **Node.js** and **Express** that enables users to manage tractors, categories, posts, and comments. This API supports user roles (admin, moderator, and guest) for managing forum content while ensuring proper data relationships and integrity.
+This repository contains the frontend for the **Klėtis Forum** project, built using Vue.js. The application provides a platform to browse tractors, categories, posts, and comments, with separate functionalities for users, moderators, and admins.
 
 ## Features
 
-- **User Management**:
-  - Create, read, update, and delete users.
-  - User roles: `admin`, `mod`, `guest`.
-- **Tractor Management**:
-  - Manage tractor categories.
-  - Link posts to specific tractor categories.
-- **Post Management**:
-  - Create posts with titles, content, and vote counts (upvotes and downvotes).
-  - Pre-save hooks for timestamps and cascading deletion of comments when a post is deleted.
-- **Comment Management**:
-  - Add, update, and delete comments linked to posts.
-- **Voting System**:
-  - Upvote and downvote functionality for posts.
-- **Query Expansion**:
-  - Include related fields (e.g., posts under a specific tractor category).
+- **Vue Router**: Navigation between pages.
+- **Axios**: HTTP requests to the backend.
+- **Pinia Store**: State management for global variables and notifications.
+- **Vee-Validate**: Input validation for forms.
+- **Responsive UI**: Designed with modular components to enhance user experience.
+- **Role-Based Access**:
+  - **Not logged in**: Can view most of the information.  
+  - **Guest**: Can leave comments, edit their profile, and logout.
+  - **Moderator**: Can manage categories and moderate comments.
+  - **Admin**: Full control to manage users, tractors, posts, and comments.
 
-## Prerequisites
+---
 
-- **Node.js**: v14 or above
-- **MongoDB**: A MongoDB database (local or cloud, e.g., MongoDB Atlas)
+## Project Structure
+
+### Directories
+- **`components/`**: Modular components used across the application (e.g., post cards, user profile, etc.).
+- **`enums/`**: Contains an enum file for shared constants.
+- **`services/`**: 
+  - `AuthService`: Handles authentication logic.
+  - `APIService`: Handles generic API requests.
+  - `AxiosResponseHandlerService`: Processes and standardizes Axios responses.
+- **`views/`**: Pages of the application, including:
+  - `/` - Home page.
+  - `/tractors` - Lists all tractor categories.
+  - `/tractors/:id` - Displays category details and associated posts.
+  - `/posts/:id` - Displays post details and comments.
+  - `/users` - Admin page displaying a user table.
+  - `/mod` - Moderator page for managing categories and comments.
+- **`stores/`**: Pinia stores for global state management.
+  - `AuthStore`: Manages authentication state.
+  - `NotificationStore`: Handles notifications.
+  - `ModalStore`: Manages modal state for edit/create modals.
+- **`composables/`**: Utility functions for data fetching and posting.
+- **`types/`**: Defines TypeScript types for variables to ensure type safety.
+- **`router/`**: Defines the project's routes.
+
+---
+
+## Key Functionalities
+
+### Navigation and Display
+- **Home Page (`/`)**: Welcomes users to the forum.
+- **Tractor Categories (`/tractors`)**: Displays all available categories.
+- **Tractor Details (`/tractors/:id`)**: Shows category information and its posts. Users can create new posts.
+- **Post Details (`/posts/:id`)**: Displays post information and its comments. Users can create new comments.
+- **User Management (`/users`)**: Allows admin to edit and create new users.
+- **Register Page (`/register`)**: Allows a new user to create an account.
+- **Login Page (`/login`)**: Allows the user to log in.
+- **Logout button (`/logout`)**: Allows the user to log out.
+
+### User Roles and Capabilities
+- **User that has not logged in**
+   - Can view tractors, posts, and comments.
+   - Can register and login to become a guest. 
+- **Guest**:
+- - can leave posts under tractor of their choosing.
+  - Can leave comments on posts.
+  - Can edit their own profile.
+  - Can edit their own comments.
+- **Moderator**:
+  - Can manage categories.
+  - Can moderate comments (edit or delete inappropriate ones).
+- **Admin**:
+  - Can manage all content (users, tractors, posts, and comments).
+
+### Modals
+- Modals are used for editing and creating fields, managed through `ModalStore`.
+- Custom modal components ensure a consistent and responsive UI.
+
+### Backend Communication
+- Authentication and session management are handled via cookies.
+
+---
+
+## Deployment
+
+The application is deployed on **Vercel** for seamless access.
+
+---
 
 ## Getting Started
 
-### 1. Clone the Repository
+### Prerequisites
+- Node.js
+- Vue CLI
 
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/MartynasKul/Kletis-Forum.git
+   cd kletis-forum-frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Build
+Create a production-ready build:
 ```bash
-git clone https://github.com/MartynasKul/Kletis-Forum.git
-cd Kletis-Forum
+npm run build
 ```
 
-### 2. Install Dependencies
-
-```bash
-npm install
-```
-
-### 3. Environment Setup
-
-Create a `.env` file and add the following variables:
-
-```
-MONGODB_URI=<your-mongodb-connection-string>
-PORT=3000
-```
-
-### 4. Run the Program
-
-```bash
-npm run dev
-```
-
-## API Endpoints
-
-### User Routes
-
-| **Method** | **Route**        | **Description**              | **Request Body**                                         | **Response**                        |
-|------------|------------------|------------------------------|----------------------------------------------------------|-------------------------------------|
-| `GET`      | `/users`         | Get all users                | No body required                                         | `200 OK`: List of users <br> `500 Internal Server Error`: Error fetching users |
-| `POST`     | `/users`         | Create a new user            | `{ "username": "username", "password": "password", "role": "guest" }` | `201 Created`: User created successfully |
-| `PUT`      | `/users/:id`     | Update a user's information  | `{ "username": "new_username", "role": "moderator" }`    | `200 OK`: User updated successfully |
-| `DELETE`   | `/users/:id`     | Delete a user                | No body required                                         | `200 OK`: User deleted successfully |
+### Deployment
+Deploy the application to Vercel or any hosting service of your choice.
 
 ---
 
-### Tractor Routes
+## Contributions
 
-| **Method** | **Route**           | **Description**            | **Request Body**                     | **Response**                       |
-|------------|---------------------|----------------------------|--------------------------------------|------------------------------------|
-| `GET`      | `/tractors`         | Get all tractor categories | No body required                     | `200 OK`: List of tractors |
-| `POST`     | `/tractors`         | Create a new tractor        | `{ "name": "Tractor Name" }`         | `201 Created`: Tractor created successfully |
-| `DELETE`   | `/tractors/:id`     | Delete a tractor category  | No body required                     | `200 OK`: Tractor deleted successfully |
+Contributions are welcome! Feel free to submit a pull request or report issues.
 
 ---
-
-### Post Routes
-
-| **Method** | **Route**        | **Description**             | **Request Body**                                     | **Response**                       |
-|------------|------------------|-----------------------------|------------------------------------------------------|------------------------------------|
-| `GET`      | `/posts`         | Get all posts               | No body required                                     | `200 OK`: List of posts |
-| `POST`     | `/posts`         | Create a new post           | `{ "title": "Post Title", "content": "Content", "tractorId": "tractorId" }` | `201 Created`: Post created successfully |
-| `PUT`      | `/posts/:id`     | Update a post               | `{ "title": "Updated Title", "content": "Updated Content" }` | `200 OK`: Post updated successfully |
-| `DELETE`   | `/posts/:id`     | Delete a post               | No body required                                     | `200 OK`: Post deleted successfully |
-
----
-
-### Comment Routes
-
-| **Method** | **Route**          | **Description**            | **Request Body**                         | **Response**                       |
-|------------|--------------------|----------------------------|------------------------------------------|------------------------------------|
-| `GET`      | `/comments`        | Get all comments           | No body required                         | `200 OK`: List of comments |
-| `POST`     | `/comments`        | Create a comment           | `{ "postId": "postId", "content": "Comment Content" }` | `201 Created`: Comment created successfully |
-| `DELETE`   | `/comments/:id`    | Delete a comment           | No body required                         | `200 OK`: Comment deleted successfully |
-
----
-
-## Notes
 
 
