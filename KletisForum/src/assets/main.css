@@ -1,0 +1,101 @@
+@import './base.css';
+
+
+
+#app {
+  
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: #FDE100;
+  /* color: hsla(160, 100%, 37%, 1); */
+  transition: 0.4s;
+  padding: 3px;
+  font-size: larger;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  }
+}
+
+.nav{
+  position : fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: #20720D ;
+  text-align: center;
+  box-shadow: inset;
+
+  padding: 1rem
+}
+
+.navLi{
+  outline: dotted;
+  outline-color: #3B8927;
+}
+
+.navUl{
+  justify-content: flex;
+  outline: dotted;
+  outline-color: #3B8927;
+}
+
+nav{
+  background-color: #20720D;
+}
+
+.button {
+  @apply bg-gradient-to-r from-orang to-JDyellow shadow-lg  shadow-orang rounded-xl px-4 h-12 text-xl;
+}
+
+.button:hover {
+  @apply from-orang to-JDyellow shadow-lg shadow-orang;
+}
+.buttonSuccess {
+  @apply bg-gradient-to-r from-JDdarkestGreen to-JDyellow shadow-lg  shadow-JDdarkestGreen rounded-xl px-4 h-12 text-xl;
+}
+
+.buttonSuccess:hover {
+  @apply from-red to-JDyellow shadow-lg shadow-JDmidGreen;
+}
+
+.delete{
+  @apply bg-gradient-to-r from-red to-JDyellow shadow-JDyellow rounded-xl px-4 h-12 text-xl
+}
+
+.delete:hover{
+  @apply from-red to-JDyellow shadow-lg shadow-cweam;
+}
+
+/*
+color scheme
+#20720D tamsiausia zalia
+#3B8927 vidutine zalia
+#479829 sviesiausia zalia
+#FDE100 geltona
+
+
+
+*/
