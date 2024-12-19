@@ -107,6 +107,17 @@ Create a production-ready build:
 npm run build
 ```
 
+### Pictures
+Pictures of the forum.
+![image](https://github.com/user-attachments/assets/edb0e1a4-d54a-4cd6-aa5a-5aac9fa3a080)
+![image](https://github.com/user-attachments/assets/486f956e-e6f2-4a90-b1c7-61d84b4da5ce)
+![image](https://github.com/user-attachments/assets/4f37e2e3-d5c9-4537-9c4b-4b499dea7ffb)
+![image](https://github.com/user-attachments/assets/50193307-c01d-41d0-ad2d-3edac22e191c)
+
+
+
+---
+
 ### Deployment
 Deploy the application to Vercel or any hosting service of your choice.
 
