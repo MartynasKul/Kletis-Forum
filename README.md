@@ -32,7 +32,6 @@ This repository contains the frontend for the **Klėtis Forum** project, built u
   - `/tractors/:id` - Displays category details and associated posts.
   - `/posts/:id` - Displays post details and comments.
   - `/users` - Admin page displaying a user table.
-  - `/mod` - Moderator page for managing categories and comments.
 - **`stores/`**: Pinia stores for global state management.
   - `AuthStore`: Manages authentication state.
   - `NotificationStore`: Handles notifications.
